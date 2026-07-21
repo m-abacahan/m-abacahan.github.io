@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marlon Abacahan — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F8F8F6;
+    --surface: #FFFFFF;
+    --border: #E4E4E0;
+    --text-primary: #1A1A1A;
+    --text-secondary: #6B6B6B;
+    --accent: #1B4F72;
+    --accent-light: #EAF2FB;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(248,248,246,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 100px 2rem 60px;
+  }
+
+  section:first-of-type { padding-top: 140px; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  /* HERO */
+  .hero { padding-top: 140px; padding-bottom: 80px; }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .hero-name span {
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover { background: #154360; border-color: #154360; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 2rem;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .about-text p + p { margin-top: 1rem; }
+
+  .about-details { }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .detail-item:first-child { border-top: 1px solid var(--border); }
+
+  .detail-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-card:hover { border-color: var(--accent); }
+
+  .skill-card-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* EXPERIENCE */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding-top: 3px;
+    letter-spacing: 0.03em;
+  }
+
+  .exp-company {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .exp-role {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .contact-card-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+
+  .contact-card-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 80px 1rem 40px; }
+    .hero { padding-top: 100px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">MA.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="section-label">Software Engineer</div>
+  <h1 class="hero-name">Marlon<br><span>Abacahan</span></h1>
+  <p class="hero-title">// .NET Backend Developer · Azure · SQL Server</p>
+  <p class="hero-bio">
+    Software Engineer with 12+ years of experience building enterprise-grade backend systems, cloud infrastructure, and workflow automation. Based in Cebu, Philippines — open to remote and local opportunities.
+  </p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">12+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Industries Served</div>
+    </div>
+  </div>
+  <div class="hero-links">
+    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+    <a href="https://linkedin.com/in/marlon-abacahan" target="_blank" class="btn btn-secondary">LinkedIn</a>
+    <a href="https://github.com/m-abacahan" target="_blank" class="btn btn-secondary">GitHub</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Software Engineer specializing in backend development using ASP.NET C#, Microsoft Azure, and SQL Server. I've built enterprise systems across immigration tech, HR platforms, automotive dealership management, and more.</p>
+      <p>I enjoy solving complex backend problems — from designing scalable APIs and secure document systems to automating workflows that save teams hours of manual work every day.</p>
+      <p>Outside of coding I actively use AI tools like GitHub Copilot and Claude to stay sharp and work smarter. I'm currently deepening my knowledge in .NET 8, Docker, and Azure certifications.</p>
+    </div>
+    <div class="about-details">
+      <div class="detail-item">
+        <span class="detail-label">Location</span>
+        <span class="detail-value">Cebu, Philippines</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Availability</span>
+        <span class="detail-value">Immediately Available</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Work Setup</span>
+        <span class="detail-value">Remote / Hybrid / Onsite</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Education</span>
+        <span class="detail-value">BS Information Technology</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Email</span>
+        <span class="detail-value">marlon.salaw@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">Languages</div>
+      <div class="skill-tags">
+        <span class="tag">C#</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">SQL</span>
+        <span class="tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Frameworks</div>
+      <div class="skill-tags">
+        <span class="tag">ASP.NET Web API</span>
+        <span class="tag">ASP.NET MVC</span>
+        <span class="tag">.NET Framework</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Cloud & Infrastructure</div>
+      <div class="skill-tags">
+        <span class="tag">Microsoft Azure</span>
+        <span class="tag">Azure Blob Storage</span>
+        <span class="tag">Azure SQL</span>
+        <span class="tag">AWS Redshift</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Databases</div>
+      <div class="skill-tags">
+        <span class="tag">SQL Server 2022</span>
+        <span class="tag">Azure SQL</span>
+        <span class="tag">Amazon Redshift</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">CI/CD & DevOps</div>
+      <div class="skill-tags">
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">Azure Pipelines</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">AI Tools</div>
+      <div class="skill-tags">
+        <span class="tag">GitHub Copilot</span>
+        <span class="tag">Claude</span>
+        <span class="tag">ChatGPT</span>
+        <span class="tag">n8n</span>
+        <span class="tag">Langdock</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work Experience</div>
+  <div class="experience-list">
+
+    <div class="exp-item">
+      <div class="exp-period">2021 — Present</div>
+      <div class="exp-content">
+        <div class="exp-company">Rapid Visa / Boundless Immigration</div>
+        <div class="exp-role">Software Engineer</div>
+        <ul class="exp-bullets">
+          <li>Architected petition-specific workflows — reduced time-to-ship by 22%</li>
+          <li>Built secure document management system on Azure Blob Storage</li>
+          <li>Customized HubSpot CRM to automate sales and service workflows</li>
+          <li>Integrated Mezmo Logs for centralized monitoring — reduced system downtime</li>
+          <li>Improved QA standards by 23% through iterative tool development</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2017 — 2021</div>
+      <div class="exp-content">
+        <div class="exp-company">Mesh Networks Inc.</div>
+        <div class="exp-role">.NET Developer</div>
+        <ul class="exp-bullets">
+          <li>Built complete HRIS platform covering payroll, asset management, and employee self-service</li>
+          <li>Developed end-to-end recruitment system with applicant tracking and automated exams</li>
+          <li>Architected a secure Document Management System for critical business records</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2013 — 2017</div>
+      <div class="exp-content">
+        <div class="exp-company">Gateway Kia Motors</div>
+        <div class="exp-role">.NET Developer</div>
+        <ul class="exp-bullets">
+          <li>Developed customized CRM synchronizing sales, marketing, and accounting data</li>
+          <li>Converted paper-based insurance processes into a fully digital system</li>
+          <li>Built Dealer Management System for vehicle service and inventory tracking</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2012</div>
+      <div class="exp-content">
+        <div class="exp-company">Lexmark Research and Development Corporation</div>
+        <div class="exp-role">Software Product Engineer (OJT)</div>
+        <ul class="exp-bullets">
+          <li>Conducted driver compatibility testing for Mac and Linux environments</li>
+          <li>Executed patch verification protocols prior to customer deployment</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 15px; max-width: 480px; line-height: 1.7;">
+    I'm currently open to new opportunities — remote, hybrid, or onsite in Cebu. Feel free to reach out through any of the channels below.
+  </p>
+  <div class="contact-grid">
+    <a href="mailto:marlon.salaw@gmail.com" class="contact-card">
+      <span class="contact-card-label">Email</span>
+      <span class="contact-card-value">marlon.salaw@gmail.com</span>
+    </a>
+    <a href="tel:+639171255176" class="contact-card">
+      <span class="contact-card-label">Phone</span>
+      <span class="contact-card-value">+63 917 125 5176</span>
+    </a>
+    <a href="https://linkedin.com/in/marlon-abacahan" target="_blank" class="contact-card">
+      <span class="contact-card-label">LinkedIn</span>
+      <span class="contact-card-value">linkedin.com/in/marlon-abacahan</span>
+    </a>
+    <a href="https://github.com/m-abacahan" target="_blank" class="contact-card">
+      <span class="contact-card-label">GitHub</span>
+      <span class="contact-card-value">github.com/m-abacahan</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Marlon Abacahan · Built with HTML & CSS · Cebu, Philippines</span>
+</footer>
+
+</body>
+</html>
